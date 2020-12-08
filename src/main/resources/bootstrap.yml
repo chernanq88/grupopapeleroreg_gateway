@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: microservicio-gateway
+  cloud:
+    config:
+      name: config-server
+      discovery:
+        enabled: true
+        service-id: MICROSERVICIO-CONFIG-SERVER
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tigo.server:8761/eureka/
+management:
+  endpoint:
+    restart:
+      enabled: true

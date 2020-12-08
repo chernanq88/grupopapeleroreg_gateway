@@ -1,0 +1,95 @@
+spring:
+  application:
+    name: microservicio-gateway-grupopapelero
+
+  datasource:
+    url: jdbc:mysql://tigo.server:3306/grupopapelero_demograficos?useSSL=false
+    username: root
+    password: 3V1lwarn1ng
+    validationQuery: SELECT 1
+  jpa:
+    generate-ddl: true
+    show-sql: false
+    hibernate:
+      dll-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        default_schema: grupopapelero_demograficos
+
+  main:
+    allow-bean-definition-overriding: true
+
+server:
+  port: 8081      
+security:
+  basic:
+    enable: false
+  jwt:
+    uri: /auth/**
+    header: Authorization
+    prefix: Bearer
+    expiration: 86400
+    secret: JwtSecretKey
+
+
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  host:
+    time-to-live: -1
+    connect-timeout-millis: 5000
+    max-per-route-connections: 10000
+    max-total-connections: 5000
+    socket-timeout-millis: 60000
+  semaphore:
+    max-semaphores: 500
+
+ribbon:
+  ConnectTimeout: 10000
+  ReadTimeout: 10000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://tigo.server:8761/eureka/
+  instance:
+    hostname: localhost
+    nonSecurePort: 8081
+
+management:
+  endpoints:
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    org:
+      springframework:
+        security: ERROR
+        web: DEBUG
+        hibernate: ERROR
+        cloud:
+          config: DEBUG
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
