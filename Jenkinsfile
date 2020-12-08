@@ -24,7 +24,7 @@ pipeline{
 				   '''
 				sh "scp -i /var/lib/jenkins/.ssh/id_rsa_psigo $WORKSPACE/target/${ARTIFACT_ID}.jar root@104.192.5.97:/home/microservicios/${ARTIFACT_ID}.jar"
 				sh '''#!/bin/bash \n
-				     ssh -o StrictHostKeyChecking=no root@104.192.5.97 -i /var/lib/jenkins/.ssh/id_rsa_psigo /root/gateway.sh &   
+				     ssh -o StrictHostKeyChecking=no root@104.192.5.97 -i /var/lib/jenkins/.ssh/id_rsa_psigo /home/microservicios/gateway.sh &   
 				   '''
 	    	        }
 	        }
