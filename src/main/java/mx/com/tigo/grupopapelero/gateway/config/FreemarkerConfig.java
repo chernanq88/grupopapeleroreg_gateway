@@ -12,7 +12,7 @@ import freemarker.template.TemplateExceptionHandler;
 @org.springframework.context.annotation.Configuration
 public class FreemarkerConfig{
 
-	@Value("${triver.url.static}")
+	@Value("${grupopapeleroreg.url.static}")
 	private String contenidoEstatico;
 	
 	@Bean
@@ -23,6 +23,7 @@ public class FreemarkerConfig{
 		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 		cfg.setLogTemplateExceptions(false);
 		cfg.setWrapUncheckedExceptions(true);
+		
 		return cfg;
 	}
 	

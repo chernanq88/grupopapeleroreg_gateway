@@ -15,19 +15,19 @@ import mx.com.tigo.transfer.interfaces.IServicioEnvioCorreos;
 @Data
 public class ServicioAbstracto {
 	
-	@Value(value = "${triver.smtp.user}")
+	@Value(value = "${grupopapeleroreg.smtp.user}")
 	private String mailUser;
 	
-	@Value(value = "${triver.smtp.password}")
+	@Value(value = "${grupopapeleroreg.smtp.password}")
 	private String mailPassword;
 
-	@Value(value = "${triver.smtp.host}")
+	@Value(value = "${grupopapeleroreg.smtp.host}")
 	private String mailHost;
 
-	@Value(value = "${triver.smtp.port}")
+	@Value(value = "${grupopapeleroreg.smtp.port}")
 	private String mailPort;
 	
-	@Value(value = "${triver.url.static}")
+	@Value(value = "${grupopapeleroreg.url.static}")
 	private String rutaContenidoEstatico;
 
 	@Autowired

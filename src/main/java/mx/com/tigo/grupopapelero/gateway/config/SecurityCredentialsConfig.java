@@ -58,6 +58,8 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/signin").permitAll()
                 .antMatchers(HttpMethod.POST, "/facebook/signin").permitAll()
                 .antMatchers(HttpMethod.GET,  "/microservicio-productos/productos/**").permitAll()
+                .antMatchers(HttpMethod.GET,  "/microservicio-ordenes/banner/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/microservicio-productos/productos/autocompletado/**").permitAll()
                 .antMatchers(HttpMethod.GET,  "/microservicio-productos/menu/**").permitAll()
                 .antMatchers(HttpMethod.POST,  "/microservicio-productos/productos/filtrodinamico").permitAll()
                 .antMatchers(HttpMethod.POST, "/users").anonymous()
@@ -84,7 +86,8 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("https://localhost:3000"));
+        config.setAllowedOrigins(Arrays.asList("https://localhost:3000",
+        									   "http://localhost:4200"));
         config.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
 		config.setAllowCredentials(true);
 		config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));

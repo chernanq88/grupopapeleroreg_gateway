@@ -70,7 +70,7 @@ public class UserService extends ServicioAbstracto {
     @Autowired
     private JwtTokenProvider tokenProvider;
     
-    @Value("${triver.mensajesCorreo.asuntoPasswordOlvidado}")
+    @Value("${grupopapeleroreg.mensajesCorreo.asuntoPasswordOlvidado}")
     private String asuntoPasswordOlvidado;
 
     public String loginUser(String username, String password) {
