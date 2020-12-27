@@ -58,10 +58,11 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/signin").permitAll()
                 .antMatchers(HttpMethod.POST, "/facebook/signin").permitAll()
                 .antMatchers(HttpMethod.GET,  "/microservicio-productos/productos/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/microservicio-productos/productos/recomendaciones/**").permitAll()
                 .antMatchers(HttpMethod.GET,  "/microservicio-ordenes/banner/**").permitAll()
                 .antMatchers(HttpMethod.POST, "/microservicio-productos/productos/autocompletado/**").permitAll()
                 .antMatchers(HttpMethod.GET,  "/microservicio-productos/menu/**").permitAll()
-                .antMatchers(HttpMethod.POST,  "/microservicio-productos/productos/filtrodinamico").permitAll()
+                .antMatchers(HttpMethod.POST, "/microservicio-productos/productos/filtrodinamico").permitAll()
                 .antMatchers(HttpMethod.POST, "/users").anonymous()
                 .anyRequest().authenticated();
     }
