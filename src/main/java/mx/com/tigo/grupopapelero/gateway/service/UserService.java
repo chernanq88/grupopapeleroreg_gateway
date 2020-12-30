@@ -224,11 +224,8 @@ public class UserService extends ServicioAbstracto {
 		aviso.setConfirmarAccion("getServicioEtiquetas().obtenerPorId(CAMBIO_CONTRASENA_CONFIRMAR_ACCION");
 		aviso.setHaSolicitadoCambio("getServicioEtiquetas().obtenerPorId(CAMBIO_CONTRASENA_HA_SOLICITADO");
 		aviso.setIgnoreCorreoElectronico("getServicioEtiquetas().obtenerPorId(CAMBIO_CONTRASENA_IGNORE_CORREO_ELECTRONICO");
-		
-	
 		aviso.setUriCambioPass("uriCambioPass.get().getValor()"); 
 	
-		 
 		aviso.setToken(miToken.getToken());
 		aviso.setMensaje("getServicioEtiquetas().obtenerPorId(CAMBIO_CONTRASENA_CONFIRMAR_SOLICITUD");
 		aviso.setDescripcionMensaje("getServicioEtiquetas().obtenerPorId(CAMBIO_CONTRASENA_HA_SOLICITADO)");
@@ -242,6 +239,22 @@ public class UserService extends ServicioAbstracto {
 		enviarCorreo(usuario.getEmail(), asuntoPasswordOlvidado,
 				out.toString(),null,null);
 
+	}
+
+	@Transactional
+	public void modify(User user, String email) {
+
+		Optional<User> opt= userRepository.findByEmail(email);
+		User entity=opt.orElseThrow();	
+		entity.setNombres(user.getNombres());
+		entity.setApellidoMaterno(user.getApellidoMaterno());
+		entity.setApellidoPaterno(user.getApellidoPaterno());
+		entity.setCelular(user.getCelular());
+		entity.setTelefonoCasa(user.getTelefonoCasa());
+		entity.setTelefonoOficina(user.getTelefonoOficina());
+		entity.setUpdatedAt(new Date());
+		
+        userRepository.save(entity);
 	}
 
 }

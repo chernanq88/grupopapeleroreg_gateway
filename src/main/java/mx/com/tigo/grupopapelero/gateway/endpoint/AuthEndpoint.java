@@ -15,12 +15,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.security.Principal;
 
 @RestController
 @Slf4j
@@ -72,4 +74,29 @@ public class AuthEndpoint {
                 .created(location)
                 .body(new ApiResponse(true,"User registered successfully"));
     }
+    
+    
+    @PutMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> modifyUser(@Valid @RequestBody UpdateRequest payload, Principal p) {
+        
+        User user = User
+                .builder()
+                .apellidoPaterno(payload.getApellidoPaterno())
+                .apellidoMaterno(payload.getApellidoMaterno())
+                .celular(payload.getCelular())
+                .telefonoCasa(payload.getTelefonoCasa())
+                .telefonoOficina(payload.getTelefonoOficina())
+                .nombres(payload.getNombres())
+                .userProfile(Profile
+                        .builder()
+                        .displayName(payload.getNombres())
+                        .build())
+                .build();
+
+        userService.modify(user, p.getName());
+
+        return ResponseEntity
+                .noContent().build();
+    }
+
 }

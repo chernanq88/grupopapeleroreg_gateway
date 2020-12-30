@@ -46,7 +46,7 @@ public class UserEndpoint {
     }
 
     @GetMapping(value = "/users/me", produces = MediaType.APPLICATION_JSON_VALUE)
-    @PreAuthorize("hasRole('USER') or hasRole('FACEBOOK_USER')")
+    @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_FACEBOOK_USER')")
     @ResponseStatus(HttpStatus.OK)
     public UserSummary getCurrentUser(@AuthenticationPrincipal InstaUserDetails userDetails, Principal p) {
         return UserSummary
