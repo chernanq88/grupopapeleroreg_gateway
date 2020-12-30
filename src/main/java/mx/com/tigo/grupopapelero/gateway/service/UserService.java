@@ -94,6 +94,7 @@ public class UserService extends ServicioAbstracto {
                     String.format("email %s already exists", user.getEmail()));
         }
         user.setActive(true);
+        user.setCreatedAt(new Date());
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(new HashSet<>());
         
