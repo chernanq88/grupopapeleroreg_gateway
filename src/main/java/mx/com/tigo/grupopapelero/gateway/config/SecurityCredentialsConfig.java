@@ -88,7 +88,10 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOrigins(Arrays.asList("https://localhost:3000",
-        									   "http://localhost:4200"));
+        									   "http://localhost:4200",
+        									   "https://localhost:4200",
+        									   "https://grupopapeleroreg.com:4200",
+        									   "http://grupopapeleroreg.com:4200"));
         config.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
 		config.setAllowCredentials(true);
 		config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));

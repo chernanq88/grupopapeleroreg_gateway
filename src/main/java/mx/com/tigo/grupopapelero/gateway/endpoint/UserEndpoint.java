@@ -8,6 +8,7 @@ import mx.com.tigo.grupopapelero.gateway.payload.*;
 import mx.com.tigo.grupopapelero.gateway.service.UserService;
 
 import java.security.Principal;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -49,15 +50,19 @@ public class UserEndpoint {
     @PreAuthorize("hasRole('ROLE_USER') or hasRole('ROLE_FACEBOOK_USER')")
     @ResponseStatus(HttpStatus.OK)
     public UserSummary getCurrentUser(@AuthenticationPrincipal InstaUserDetails userDetails, Principal p) {
+    	
+    	Optional<User> opt=userService.findByEmail(userDetails.getEmail());
+    	
         return UserSummary
                 .builder()
                 .id(userDetails.getId())
                 .username(userDetails.getUsername())
-                .apellidoPaterno(userDetails.getApellidoPaterno()) 
-                .apellidoMaterno(userDetails.getApellidoMaterno())
-                .telefonoCasa(userDetails.getTelefonoCasa())
-                .telefonoOficina(userDetails.getTelefonoOficina())
-                .nombres(userDetails.getUserProfile().getDisplayName())
+                .apellidoPaterno(opt.get().getApellidoPaterno()) 
+                .apellidoMaterno(opt.get().getApellidoMaterno())
+                .telefonoCasa(opt.get().getTelefonoCasa())
+                .telefonoOficina(opt.get().getTelefonoOficina())
+                .celular(opt.get().getCelular())
+                .nombres(opt.get().getNombres())
                 .profilePicture(userDetails.getUserProfile().getProfilePictureUrl())
                 .build();
     }

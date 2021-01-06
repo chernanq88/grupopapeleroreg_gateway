@@ -76,7 +76,7 @@ public class AuthEndpoint {
     }
     
     
-    @PutMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PutMapping(value = "/users",consumes= MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> modifyUser(@Valid @RequestBody UpdateRequest payload, Principal p) {
         
         User user = User
