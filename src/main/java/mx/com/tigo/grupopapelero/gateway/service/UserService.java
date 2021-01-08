@@ -29,6 +29,7 @@ import mx.com.tigo.grupopapelero.gateway.exception.EmailAlreadyExistsException;
 import mx.com.tigo.grupopapelero.gateway.exception.TokenInvalidoOExpiradoException;
 import mx.com.tigo.grupopapelero.gateway.freemarker.model.AvisoRecuperacionContrasena;
 import mx.com.tigo.grupopapelero.gateway.model.PasswordResetToken;
+import mx.com.tigo.grupopapelero.gateway.model.ProyeccionUsuarios;
 import mx.com.tigo.grupopapelero.gateway.model.Role;
 import mx.com.tigo.grupopapelero.gateway.model.User;
 import mx.com.tigo.grupopapelero.gateway.payload.PasswordRecuperadoEntity;
@@ -256,6 +257,17 @@ public class UserService extends ServicioAbstracto {
 		entity.setUpdatedAt(new Date());
 		
         userRepository.save(entity);
+	}
+
+	public List<ProyeccionUsuarios> listarClientes(String input) {
+		
+		if (input==null) {
+			return userRepository.listarClientes();
+		}else {
+			return userRepository.listarClientesInput(input);
+		}
+		
+		
 	}
 
 }

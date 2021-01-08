@@ -120,4 +120,13 @@ public class UserEndpoint {
 		userService.guardarPasswordRecuperado(reset);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@PostMapping(value="/administracion/clientes", consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> obtenerUsuarios(@RequestBody @Valid FiltroClientes filtro) {
+
+		log.info("Lista de clientes");
+		
+		return new ResponseEntity<>(userService.listarClientes(filtro.getInput()),HttpStatus.OK);
+	}
+
 }
