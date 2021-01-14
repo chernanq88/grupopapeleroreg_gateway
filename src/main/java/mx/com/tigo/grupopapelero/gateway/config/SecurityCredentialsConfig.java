@@ -90,6 +90,8 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
         config.setAllowedOrigins(Arrays.asList("https://localhost:3000",
         									   "http://localhost:4200",
         									   "https://localhost:4200",
+        									   "https://104.192.5.97:81",
+        									   "http://104.192.5.97:81",
         									   "https://grupopapeleroreg.com:4200",
         									   "http://grupopapeleroreg.com:4200"));
         config.setAllowedMethods(Arrays.asList("HEAD", "GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
